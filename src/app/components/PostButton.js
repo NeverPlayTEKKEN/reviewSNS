@@ -6,9 +6,9 @@ const PostButton = () => {
     const [isVisible, setVisible] = useState(false)
 
     const handleClick = () => {
-        
         setVisible(!isVisible)
     }
+
     return (
         <div>
             {isVisible ? (
@@ -57,9 +57,11 @@ const PostWindow = () => {
     }, []);
 
     return(
-        <div onClick={(e)=>{e.stopPropagation()}} class="bg-zinc-50 z-50">
+        <div onClick={(e)=>{e.stopPropagation()}} class="bg-zinc-50 z-50 p-1">
             <video ref={videoRef} width="600" height="400" />
-            <button onClick={capturePhoto}>撮影</button>
+            <div class="flex justify-center">
+                <button onClick={capturePhoto} class="bg-emerald-900 text-white mt-1 rounded-sm w-16">撮影</button>
+            </div>
         </div>
     )
 }
