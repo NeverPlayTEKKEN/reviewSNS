@@ -7,7 +7,7 @@ import SubHeader from "./components/SubHeader";
 
 const Home = () => {
   return (
-    <div class="h-screen bg-emerald-50">
+    <div class="h-screen bg-emerald-50 flex flex-col">
       <Header />
       <SubHeader />
       <PostButton />
