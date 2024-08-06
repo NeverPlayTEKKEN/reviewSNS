@@ -26,44 +26,42 @@ const PostButton = () => {
 }
 
 const PostWindow = () => {
-
     const videoRef = useRef(null);
 
     const capturePhoto = () => {
         const canvas = document.createElement('canvas');
-        const video = document.querySelector('video');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const imageData = canvas.toDataURL('image/png');
-        console.log(imageData); // ここで画像データを処理
-      };
+        const video = videoRef.current;
+        if (video) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png');
+            console.log(imageData); // ここで画像データを処理
+        }
+    };
 
-    useEffect(()=>{
+    useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true })
             .then((stream) => {
-                const video = document.querySelector('video');
-                video.srcObject = stream;
-                video.play();
-                if(videoRef.current){
+                if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                     videoRef.current.play();
                 }
             })
             .catch((err) => {
                 console.error("Error accessing camera: ", err);
-            })
+            });
     }, []);
 
-    return(
-        <div onClick={(e)=>{e.stopPropagation()}} class="bg-zinc-50 z-50 p-1">
+    return (
+        <div className="bg-zinc-50 z-50 p-1">
             <video ref={videoRef} width="600" height="400" />
-            <div class="flex justify-center">
-                <button onClick={capturePhoto} class="bg-emerald-900 text-white mt-1 rounded-sm w-16">撮影</button>
+            <div className="flex justify-center">
+                <button onClick={capturePhoto} className="bg-emerald-900 text-white mt-1 rounded-sm w-16">撮影</button>
             </div>
         </div>
-    )
+    );
 }
 
 export default PostButton;
