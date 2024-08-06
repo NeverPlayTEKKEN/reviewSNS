@@ -1,6 +1,6 @@
 'use client'
 import { PencilSquareIcon } from "@heroicons/react/24/outline"
-import { useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 const PostButton = () => {
     const [isVisible, setVisible] = useState(false)
@@ -26,10 +26,40 @@ const PostButton = () => {
 }
 
 const PostWindow = () => {
+
+    const videoRef = useRef(null);
+
+    const capturePhoto = () => {
+        const canvas = document.createElement('canvas');
+        const video = document.querySelector('video');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = canvas.toDataURL('image/png');
+        console.log(imageData); // ここで画像データを処理
+      };
+
+    useEffect(()=>{
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                const video = document.querySelector('video');
+                video.srcObject = stream;
+                video.play();
+                if(videoRef.current){
+                    videoRef.current.srcObject = stream;
+                    videoRef.current.play();
+                }
+            })
+            .catch((err) => {
+                console.error("Error accessing camera: ", err);
+            })
+    }, []);
+
     return(
         <div onClick={(e)=>{e.stopPropagation()}} class="bg-zinc-50 z-50">
-            <div>ここにカメラを表示</div>
-            <input type={"text"} />
+            <video ref={videoRef} width="600" height="400" />
+            <button onClick={capturePhoto}>撮影</button>
         </div>
     )
 }
