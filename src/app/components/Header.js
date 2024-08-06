@@ -26,7 +26,7 @@ const Header = (props) => {
                 <div class="mx-2 flex justify-center">タイトル</div>
                 <div class="mx-2 flex justify-end">
                     <div onClick={handleClick} class="flex flex-col items-center">
-                        < UserCircleIcon class="w-6 h-6 text-emerald-900" />
+                        < UserCircleIcon class="w-8 h-8 text-emerald-900" />
                     </div>
                 </div>
             </div>

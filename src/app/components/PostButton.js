@@ -26,40 +26,48 @@ const PostButton = () => {
 }
 
 const PostWindow = () => {
-    const videoRef = useRef(null);
 
-    const capturePhoto = () => {
-        const canvas = document.createElement('canvas');
-        const video = videoRef.current;
-        if (video) {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = canvas.toDataURL('image/png');
-            console.log(imageData); // ここで画像データを処理
-        }
-    };
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
+    const [isCameraActive, setCameraActive] = useState(false);
 
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then((stream) => {
-                if (videoRef.current) {
-                    videoRef.current.srcObject = stream;
-                    videoRef.current.play();
-                }
-            })
-            .catch((err) => {
-                console.error("Error accessing camera: ", err);
-            });
+        startCamera();
+        return () => {
+            stopCamera();
+        }
     }, []);
 
+    const startCamera = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({video:true});
+            videoRef.current.play();
+            setCameraActive(true);
+        } catch (error) {
+            console.error('Error accessing the camera: ', error);
+        }
+    }
+
+    const stopCamera = () => {
+        const stream = videoRef.current.srcObject;
+        if (stream) {
+            const tracks = stream.getTrack();
+            tracks.forEach(track => track.stop());
+            videoRef.current.strObject = null;
+        }
+        setCameraActive(false);
+    }
+
+    const capturePhoto = () => {
+        const context = canvasRef.current.getContext('2d');
+        context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
+    };
+
     return (
-        <div className="bg-zinc-50 z-50 p-1">
-            <video ref={videoRef} width="600" height="400" />
-            <div className="flex justify-center">
-                <button onClick={capturePhoto} className="bg-emerald-900 text-white mt-1 rounded-sm w-16">撮影</button>
-            </div>
+        <div>
+            <video ref={videoRef} style={{ width: '100%' }} />
+            <button onClick={capturePhoto} disabled={!isCameraActive}>Capture Photo</button>
+            <canvas ref={canvasRef} style={{ display: 'none' }} width="640" height="480" />
         </div>
     );
 }
