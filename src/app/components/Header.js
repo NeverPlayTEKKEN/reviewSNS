@@ -4,16 +4,23 @@ import { useState } from "react";
 import { UserCircleIcon } from "@heroicons/react/24/solid"
 import Link from "next/link";
 
-const Header = () => {
+const Header = (props) => {
+
     const [isLogin, setLogin] = useState(false);
     const [isVisible, setVisible] = useState(false);
+    
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        event.stopPropagation()
         setVisible(!isVisible)
     }
 
+    const handleClose = () => {
+        setVisible(false)
+    }
+
     return (
-        <div>
+        <div onClick={handleClose} class="w-full h-full">
             <div class="w-full h-12 shadow-sm bg-neutral-50 grid grid-cols-3 items-center ">
                 <div class="mx-2 flex justify-start">ロゴ</div>
                 <div class="mx-2 flex justify-center">タイトル</div>
@@ -24,16 +31,17 @@ const Header = () => {
                 </div>
             </div>
             { isVisible ? (<HeaderWindow isLogin={isLogin}/>):(" ")}
-
-            </div>
+        </div>
     )
 }
 
 const HeaderWindow = (props) => {
     return (
-        <Link href="/" class="absolute top-12 right-0  bg-neutral-50 p-2">
-            {props.isLogin ? (" "):(<div>ログイン</div>)}
-        </Link>
+        <div class="absolute top-12 right-0  bg-neutral-50 p-2">
+            <Link href="/">
+                {props.isLogin ? (" "):(<div>ログイン</div>)}
+            </Link>
+        </div>
     )
 }
 
