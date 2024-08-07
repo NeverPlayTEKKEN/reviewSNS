@@ -37,7 +37,7 @@ const Header = (props) => {
 
 const HeaderWindow = (props) => {
     return (
-        <div class="absolute top-12 right-0  bg-neutral-50 p-2">
+        <div class="absolute top-12 right-0  bg-neutral-50 p-2 border">
             <Link href="/">
                 {props.isLogin ? (" "):(<div>ログイン</div>)}
             </Link>
