@@ -21,12 +21,12 @@ const Header = (props) => {
 
     return (
         <div onClick={handleClose} class="w-full">
-            <div class="w-full h-12 border-b bg-gradient-to-r from-white to-emerald-100 grid grid-cols-3 items-center ">
+            <div class="w-full h-14 border-b bg-gradient-to-r from-white to-emerald-100 grid grid-cols-3 items-center ">
                 <div class="mx-2 flex justify-start">ロゴ</div>
                 <div class="mx-2 flex justify-center">タイトル</div>
                 <div class="mx-2 flex justify-end">
                     <div onClick={handleClick} class="flex flex-col items-center">
-                        < UserCircleIcon class="w-8 h-8 text-emerald-900" />
+                        < UserCircleIcon class="w-10 h-10 text-emerald-900" />
                     </div>
                 </div>
             </div>

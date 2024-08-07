@@ -16,8 +16,8 @@ const PostButton = () => {
                     <PostWindow />
                 </div>
             ):(
-                <div onClick={handleClick} class="absolute right-2 bottom-16 flex flex-col items-center bg-amber-200 rounded-full p-3 shadow-lg">
-                    <PencilSquareIcon class="w-6 h-6"/>
+                <div onClick={handleClick} class="absolute right-8 bottom-16 flex flex-col items-center bg-amber-200 rounded-full p-4 shadow-lg">
+                    <PencilSquareIcon class="w-8 h-8"/>
                     <div class="text-xs">レビュー</div>
                 </div>
             )}

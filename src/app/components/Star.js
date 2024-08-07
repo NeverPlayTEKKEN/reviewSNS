@@ -23,11 +23,11 @@ const Star = () => {
     
     return (
         <div class="flex">
-            <button onClick={()=>handleClick(1)} class={handleColor(starCount[0])} ><StarIcon class="h-4 w-4" /></button>
-            <button onClick={()=>handleClick(2)} class={handleColor(starCount[1])} ><StarIcon class="h-4 w-4" /></button>
-            <button onClick={()=>handleClick(3)} class={handleColor(starCount[2])} ><StarIcon class="h-4 w-4" /></button>
-            <button onClick={()=>handleClick(4)} class={handleColor(starCount[3])} ><StarIcon class="h-4 w-4" /></button>
-            <button onClick={()=>handleClick(5)} class={handleColor(starCount[4])} ><StarIcon class="h-4 w-4" /></button>
+            <button onClick={()=>handleClick(1)} class={handleColor(starCount[0])} ><StarIcon class="h-6 w-6" /></button>
+            <button onClick={()=>handleClick(2)} class={handleColor(starCount[1])} ><StarIcon class="h-6 w-6" /></button>
+            <button onClick={()=>handleClick(3)} class={handleColor(starCount[2])} ><StarIcon class="h-6 w-6" /></button>
+            <button onClick={()=>handleClick(4)} class={handleColor(starCount[3])} ><StarIcon class="h-6 w-6" /></button>
+            <button onClick={()=>handleClick(5)} class={handleColor(starCount[4])} ><StarIcon class="h-6 w-6" /></button>
 
         </div>
     )
