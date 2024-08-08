@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { UserCircleIcon } from "@heroicons/react/24/solid"
+import { UserCircleIcon, CakeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link";
 
 const Header = (props) => {
@@ -21,9 +21,8 @@ const Header = (props) => {
 
     return (
         <div onClick={handleClose} class="w-full">
-            <div class="w-full h-14 border-b bg-gradient-to-r from-white to-emerald-100 grid grid-cols-3 items-center ">
-                <div class="mx-2 flex justify-start">ロゴ</div>
-                <div class="mx-2 flex justify-center">タイトル</div>
+            <div class="w-full h-14 border-b bg-gradient-to-r from-white to-emerald-100 grid grid-cols-2 items-center ">
+                <div class="mx-2 flex justify-start items-end"><CakeIcon class="h-10 w-10" /><div class="text-lg">Cocoret</div></div>
                 <div class="mx-2 flex justify-end">
                     <div onClick={handleClick} class="flex flex-col items-center">
                         < UserCircleIcon class="w-10 h-10 text-emerald-900" />

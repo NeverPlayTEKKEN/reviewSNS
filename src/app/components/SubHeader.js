@@ -1,21 +1,22 @@
 'use client'
 
 import Link from "next/link";
+import { HomeIcon, PencilSquareIcon, MagnifyingGlassIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
 
 const SubHeader = () => {
     return (
-        <div class="h-10 w-full mb-6 border-b bg-zinc-50 grid grid-cols-4">
-            <div class="flex flex-center items-center">
-                <Link href="/" class="w-full border-r text-center text-sm">ホーム</Link>
+        <div class="w-full mb-6 border-b bg-zinc-50 grid grid-cols-4">
+            <div class="flex justify-center items-center pt-2 pb-1 border-r">
+                <Link href="/" class="w-full flex flex-col items-center justify-center text-xs"><HomeIcon class="h-7 w-7" />ホーム</Link>
             </div>
-            <div class="flex flex-center items-center">
-                <Link href="/post_review" class="w-full border-x text-center text-sm">投稿する</Link>
+            <div class="flex justify-center items-center pt-2 pb-1 border-r">
+                <Link href="/post_review" class="w-full flex flex-col items-center justify-center text-xs"><PencilSquareIcon class="h-7 w-7" />投稿する</Link>
             </div>
-            <div class="flex flex-center items-center">
-                <Link href="/search_post" class="w-full border-x text-center text-sm">探す</Link>
+            <div class="flex justify-center items-center pt-2 pb-1 border-r">
+                <Link href="/search_post" class="w-full flex flex-col items-center justify-center text-xs"><MagnifyingGlassIcon class="h-7 w-7" />検索</Link>
             </div>
-            <div class="flex flex-center items-center">
-                <Link href="/trend" class="w-full border-l text-center text-sm">トレンド</Link>
+            <div class="flex justify-center items-center pt-2 pb-1 border-r">
+                <Link href="/trend" class="w-full flex flex-col items-center justify-center text-xs"><ArrowTrendingUpIcon class="h-7 w-7" />トレンド</Link>
             </div>
         </div>
         
