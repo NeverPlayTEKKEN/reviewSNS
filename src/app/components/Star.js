@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Star = () => {
 
-    const [ starCount, setStarCount ] = useState([1, 0, 0, 0, 0])
+    const [ starCount, setStarCount ] = useState([1, 1, 1, 0, 0])
 
     const handleClick = (num) => {
         const starArray = Array(5).fill(0)

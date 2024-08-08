@@ -3,7 +3,7 @@
 import Header from "../components/Header";
 import SubHeader from "../components/SubHeader";
 
-const Trend = () => {
+const Notice = () => {
     return (
         <div>
            <Header />
@@ -12,4 +12,4 @@ const Trend = () => {
     )
 }
 
-export default Trend;
+export default Notice;
