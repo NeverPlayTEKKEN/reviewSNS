@@ -5,16 +5,33 @@ import SubHeader from "../components/SubHeader";
 import { useRef, useState } from 'react';
 import Star from "../components/Star";
 import { CameraIcon, PencilSquareIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
+import Image from "next/image";
 
 const postReview = () => {
-    const [isButtonActive, setButtonActive] = useState(false)
+    const [ isButtonActive, setButtonActive] = useState(false)
+    const [ image, setImage ] = useState(null)
+
+    const onFileUpload = (file) => {
+        const upload_file= file
+        if(upload_file){
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+                setButtonActive(true)
+            }
+            reader.readAsDataURL(file);
+        }else{
+            alert("no file")
+        }
+    }
+
     return (
-        <div className="bg-zinc-50 flex flex-col min-h-[calc(100vh-82px)]">
+        <div className="bg-zinc-50 flex flex-col min-h-screen">
             <Header />
             <SubHeader />
             <div class="flex justify-center">
                 <div class="flex flex-col items-center w-2/3">
-                    <PostImage />
+                    {isButtonActive ? (<div class="relative w-full bg-zinc-100 aspect-video border-2 border-dashed mt-4 mb-4"><Image src={image} layout="fill" objectFit="contain"/></div>):(<PostImage onFileUpload={onFileUpload} />)}
                     <Star />
                     <textarea class="mt-4 mb-4 border w-full h-20"></textarea>
                     <DropDownReview isActive={isButtonActive} />
@@ -31,7 +48,7 @@ const postReview = () => {
 
 export default postReview;
 
-const PostImage = () => {
+const PostImage = (props) => {
     const fileInputRef = useRef(null);
 
     const handleButtonClick = () => {
@@ -40,7 +57,7 @@ const PostImage = () => {
 
     return (
         <div class="flex justify-center items-center w-full bg-zinc-100 aspect-video border-2 border-dashed mt-4 mb-4">
-            <input type='file' ref={fileInputRef} class='hidden' />
+            <input type="file" accept="image/*" onChange={() => props.onFileUpload(fileInputRef.current.files[0])} ref={fileInputRef} class='hidden' />
             <button onClick={handleButtonClick} class="flex flex-col items-center text-xs bg-amber-200 p-1 rounded-md shadow"><CameraIcon class="h-8 w-8" /><div class="text-xs">アップロード</div></button>
         </div>
     )
