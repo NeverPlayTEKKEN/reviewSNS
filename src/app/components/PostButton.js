@@ -16,7 +16,7 @@ const PostButton = () => {
             {isVisible ? (
                 <div onClick={handleClick} class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
                     <div onClick={(event) => {event.stopPropagation()}} class="bg-zinc-50 w-full mx-2">
-                        <div class="h-8 border bg-gradient-to-r from-white to-emerald-100 mb-4 pl-4 text-justify">投稿する</div>
+                        <div class="h-8 border bg-gradient-to-r from-white to-emerald-100 mb-4 pl-4 text-justify flex items-center text-lg">投稿する</div>
                         <PostWindow />
                     </div>
                 </div>
