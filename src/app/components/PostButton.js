@@ -1,6 +1,7 @@
 'use client'
 import { PencilSquareIcon } from "@heroicons/react/24/outline"
 import { useEffect, useState, useRef } from "react"
+import PostImage from "./PostImage"
 
 const PostButton = () => {
     const [isVisible, setVisible] = useState(false)
@@ -16,7 +17,7 @@ const PostButton = () => {
                     <PostWindow />
                 </div>
             ):(
-                <div onClick={handleClick} class="absolute right-8 bottom-16 flex flex-col items-center bg-amber-200 rounded-full p-4 shadow-lg">
+                <div onClick={handleClick} class="absolute right-8 bottom-16 flex flex-col items-center justify-center bg-amber-200 rounded-full h-20 w-20 shadow-lg">
                     <PencilSquareIcon class="w-8 h-8"/>
                     <div class="text-xs">レビュー</div>
                 </div>
@@ -27,8 +28,26 @@ const PostButton = () => {
 
 const PostWindow = () => {
 
+    const [ image, setImage ] = useState(null)
+
+    const onFileUpload = (file) => {
+        const upload_file= file
+        if(upload_file){
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+                setButtonActive(true)
+            }
+            reader.readAsDataURL(file);
+        }else{
+            alert("no file")
+        }
+    }
+
     return (
-        <div></div>
+        <div class="w-full bg-zinc-50">
+            <PostImage onFileUpload={onFileUpload}/>
+        </div>
     );
 }
 

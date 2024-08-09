@@ -27,7 +27,7 @@ const searchPost = () => {
 const Trend = () => {
     return (
         <div class="w-full mt-8">
-            <div class="w-full flex items-center justify-start"><ArrowTrendingUpIcon class="w-4 h-4" />トレンド</div>
+            <div class="w-full flex items-center justify-start text-lg"><ArrowTrendingUpIcon class="w-4 h-4" />トレンド</div>
         </div>
     )
 }
